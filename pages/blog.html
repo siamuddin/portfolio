@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<!--
+  pages/blog.html — BLOG PAGE
+  ─────────────────────────────
+  Articles / devlog posts about the learning journey.
+  These are written as static HTML (no CMS needed for a beginner).
+  When you want to add a new post, just copy a .blog-card and update the content.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Siamuddin</title>
+  <meta name="description" content="Siamuddin's devlog — notes and thoughts on learning web development through The Odin Project.">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* ── BLOG GRID ───────────────────────────────────────────── */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .blog-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2.2rem;
+      transition: border-color 0.3s, transform 0.3s;
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
+      text-decoration: none; color: inherit;
+    }
+    .blog-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(to right, var(--cyan), var(--accent));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s;
+    }
+    .blog-card:hover { border-color: var(--border2); transform: translateY(-5px); }
+    .blog-card:hover::before { transform: scaleX(1); }
+
+    .blog-meta {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.2rem;
+    }
+    .blog-date {
+      font-family: var(--font-mono);
+      font-size: 0.62rem; color: var(--text3);
+      letter-spacing: 0.12em;
+    }
+    .blog-read-time {
+      font-size: 0.65rem; font-weight: 500;
+      color: var(--accent); letter-spacing: 0.08em;
+    }
+
+    .blog-title {
+      font-family: var(--font-display);
+      font-size: 1.7rem; letter-spacing: 0.04em;
+      color: var(--text); margin-bottom: 0.8rem; line-height: 1;
+    }
+    .blog-excerpt {
+      font-size: 0.86rem; font-weight: 300;
+      line-height: 1.9; color: var(--text2);
+      flex: 1; margin-bottom: 1.5rem;
+    }
+    .blog-footer {
+      display: flex; align-items: center;
+      justify-content: space-between;
+    }
+    .blog-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .blog-arrow {
+      font-size: 1rem; color: var(--cyan);
+      transition: transform 0.2s;
+    }
+    .blog-card:hover .blog-arrow { transform: translateX(5px); }
+
+    /* ── FEATURED POST (spans 2 columns on wide screens) ──────── */
+    .blog-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .blog-card.featured .blog-title { font-size: 2.5rem; }
+    .blog-card.featured .blog-excerpt { font-size: 0.9rem; }
+
+    /* ── NEWSLETTER STRIP ────────────────────────────────────── */
+    .newsletter {
+      border: 1px solid var(--border2);
+      background: var(--surface);
+      padding: 3rem;
+      text-align: center;
+      margin-top: 4rem;
+    }
+    .newsletter h3 {
+      font-family: var(--font-display);
+      font-size: 2rem; letter-spacing: 0.05em;
+      color: var(--text); margin-bottom: 0.6rem; line-height: 1;
+    }
+    .newsletter p {
+      font-size: 0.88rem; font-weight: 300;
+      color: var(--text2); margin-bottom: 1.5rem; line-height: 1.8;
+    }
+    .newsletter .note {
+      font-size: 0.68rem; color: var(--text3);
+      margin-top: 0.8rem;
+    }
+
+    @media (max-width: 760px) {
+      .blog-card.featured { grid-template-columns: 1fr; }
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-ring"></div>
+
+  <nav class="navbar">
+    <a class="nav-logo" href="../index.html"><span>//</span> SIAM</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="journey.html">Journey</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-status"><div class="status-dot"></div> Open to Work</div>
+    <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="nav-mobile">
+    <a href="../index.html">Home</a><a href="about.html">About</a>
+    <a href="skills.html">Skills</a><a href="projects.html">Projects</a>
+    <a href="journey.html">Journey</a><a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="page-hero">
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-glow"></div>
+    <div class="page-hero-content">
+      <div class="page-hero-eyebrow">Devlog / Notes</div>
+      <h1 class="page-hero-title">MY<br><em>BLOG.</em></h1>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">Writings</span>
+        <h2 class="section-title">Articles</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="blog-grid">
+
+        <!-- Featured post -->
+        <div class="blog-card featured reveal">
+          <div>
+            <div class="blog-meta">
+              <span class="blog-date">2025 — Post 001</span>
+              <span class="blog-read-time">5 min read</span>
+            </div>
+            <h2 class="blog-title">Why I Chose The Odin Project Over Bootcamps</h2>
+          </div>
+          <div>
+            <p class="blog-excerpt">
+              I looked at coding bootcamps. Some cost $15,000+. Some promise jobs.
+              None of them felt right for me. Then I found The Odin Project — free,
+              open-source, project-based, and brutally honest about what it takes to
+              become a developer. Here's why I picked it and what I've learned so far
+              about learning to code for free.
+            </p>
+            <div class="blog-footer">
+              <div class="blog-tags">
+                <span class="tag">Learning</span>
+                <span class="tag">The Odin Project</span>
+                <span class="tag">Opinion</span>
+              </div>
+              <span class="blog-arrow">→</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Post 2 -->
+        <div class="blog-card reveal">
+          <div class="blog-meta">
+            <span class="blog-date">2025 — Post 002</span>
+            <span class="blog-read-time">4 min read</span>
+          </div>
+          <h3 class="blog-title">Building My First Telegram Bot</h3>
+          <p class="blog-excerpt">
+            I wanted to automate something. gallery-dl can download media from
+            almost anywhere. The Telegram Bot API lets you build bots.
+            What happens when you combine the two? This post walks through
+            how I built my first real project outside of any curriculum.
+          </p>
+          <div class="blog-footer">
+            <div class="blog-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Automation</span>
+            </div>
+            <span class="blog-arrow">→</span>
+          </div>
+        </div>
+
+        <!-- Post 3 -->
+        <div class="blog-card reveal reveal-delay-1">
+          <div class="blog-meta">
+            <span class="blog-date">2025 — Post 003</span>
+            <span class="blog-read-time">3 min read</span>
+          </div>
+          <h3 class="blog-title">CSS Flexbox Finally Made Sense</h3>
+          <p class="blog-excerpt">
+            I spent days being confused by Flexbox. Then it clicked all at once.
+            Here's the mental model that finally made it make sense —
+            the one thing no tutorial explained clearly enough.
+          </p>
+          <div class="blog-footer">
+            <div class="blog-tags">
+              <span class="tag">CSS</span>
+              <span class="tag">Flexbox</span>
+            </div>
+            <span class="blog-arrow">→</span>
+          </div>
+        </div>
+
+        <!-- Post 4 -->
+        <div class="blog-card reveal reveal-delay-2">
+          <div class="blog-meta">
+            <span class="blog-date">2025 — Post 004</span>
+            <span class="blog-read-time">6 min read</span>
+          </div>
+          <h3 class="blog-title">Git Is Not Scary — A Beginner's Real Experience</h3>
+          <p class="blog-excerpt">
+            The first time I ran git rebase I broke everything. This is the honest
+            account of learning Git as a complete beginner — the commands that matter,
+            the ones that don't, and why version control changes everything.
+          </p>
+          <div class="blog-footer">
+            <div class="blog-tags">
+              <span class="tag">Git</span>
+              <span class="tag">Tools</span>
+            </div>
+            <span class="blog-arrow">→</span>
+          </div>
+        </div>
+
+        <!-- Post 5 -->
+        <div class="blog-card reveal">
+          <div class="blog-meta">
+            <span class="blog-date">2025 — Post 005</span>
+            <span class="blog-read-time">4 min read</span>
+          </div>
+          <h3 class="blog-title">Learning in Public: Why I Built This Portfolio</h3>
+          <p class="blog-excerpt">
+            I'm not a senior dev. I don't have years of experience.
+            But I built a portfolio anyway — because learning in public
+            keeps you accountable, documents your progress, and proves
+            you can ship. Here's why you should too.
+          </p>
+          <div class="blog-footer">
+            <div class="blog-tags">
+              <span class="tag">Meta</span>
+              <span class="tag">Portfolio</span>
+            </div>
+            <span class="blog-arrow">→</span>
+          </div>
+        </div>
+
+        <!-- Post 6 — coming soon style -->
+        <div class="blog-card reveal reveal-delay-1" style="border-style:dashed; opacity:0.6;">
+          <div class="blog-meta">
+            <span class="blog-date">Coming Soon</span>
+            <span class="blog-read-time">?? min read</span>
+          </div>
+          <h3 class="blog-title">JavaScript Async/Await Explained Simply</h3>
+          <p class="blog-excerpt">
+            Still writing this one. Async JavaScript broke my brain for a week.
+            Once it made sense, I had to write it down. Coming soon.
+          </p>
+          <div class="blog-footer">
+            <div class="blog-tags">
+              <span class="tag">JavaScript</span>
+              <span class="tag">Async</span>
+            </div>
+            <span class="blog-arrow">→</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Newsletter -->
+      <div class="newsletter reveal">
+        <h3>Follow The Journey</h3>
+        <p>
+          I post about learning to code, building projects, and figuring out
+          the web. Follow on GitHub to see the code — or reach out directly.
+        </p>
+        <a href="https://github.com/siamuddin" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
+        <a href="contact.html" class="btn btn-primary" style="margin-left:0.75rem;">Say Hello</a>
+        <p class="note">No email list. No spam. Just code.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-left">© <span id="footer-year"></span> <span>Siamuddin</span> · Built with HTML, CSS & stubbornness.</div>
+    <div class="footer-right">
+      <a href="https://github.com/siamuddin" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://gitlab.com/siamuddin" target="_blank" rel="noopener">GitLab</a>
+      <a href="mailto:shelve-clock-corny@duck.com">Email</a>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

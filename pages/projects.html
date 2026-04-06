@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<!--
+  pages/projects.html — PROJECTS PAGE
+  ─────────────────────────────────────
+  All projects in detail.
+  Sections:
+    • Page hero
+    • Filter tabs (All / Web / Automation)
+    • Project cards (detailed)
+    • Coming soon section
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Siamuddin</title>
+  <meta name="description" content="Projects by Siamuddin — a Telegram media bot, Odin Project foundations work, and more in progress.">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* ── FILTER TABS ─────────────────────────────────────────── */
+    .filter-row {
+      display: flex; gap: 0.5rem;
+      flex-wrap: wrap; margin-bottom: 3rem;
+    }
+    .filter-btn {
+      padding: 0.55rem 1.4rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      cursor: none;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--cyan-dim);
+      border-color: var(--border2);
+      color: var(--cyan);
+    }
+
+    /* ── PROJECT CARDS ───────────────────────────────────────── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+    .proj-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2.2rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+      display: flex; flex-direction: column;
+    }
+    .proj-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(to right, var(--cyan), var(--accent));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s;
+    }
+    .proj-card:hover { border-color: var(--border2); transform: translateY(-5px); }
+    .proj-card:hover::before { transform: scaleX(1); }
+
+    /* Status badge top-right */
+    .proj-badge {
+      position: absolute; top: 1.4rem; right: 1.4rem;
+      padding: 0.25rem 0.7rem;
+      font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .proj-badge.live    { background: rgba(0,255,179,0.1); border: 1px solid rgba(0,255,179,0.3); color: var(--accent); }
+    .proj-badge.wip     { background: rgba(77,217,255,0.08); border: 1px solid var(--border2); color: var(--cyan); }
+    .proj-badge.planned { background: rgba(60,50,90,0.2); border: 1px solid rgba(180,150,255,0.2); color: #b49fff; }
+
+    .proj-card-num {
+      font-family: var(--font-mono);
+      font-size: 0.6rem; color: var(--text3);
+      letter-spacing: 0.2em; margin-bottom: 1.2rem;
+    }
+    .proj-card-title {
+      font-family: var(--font-display);
+      font-size: 2rem; letter-spacing: 0.04em;
+      color: var(--text); margin-bottom: 0.8rem; line-height: 1;
+    }
+    .proj-card-desc {
+      font-size: 0.86rem; font-weight: 300;
+      line-height: 1.9; color: var(--text2);
+      flex: 1; margin-bottom: 1.6rem;
+    }
+    .proj-card-desc strong { color: var(--text); font-weight: 600; }
+    .proj-card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.6rem; }
+    .proj-card-links { display: flex; gap: 1rem; }
+    .proj-link-btn {
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--cyan); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      transition: gap 0.2s;
+    }
+    .proj-link-btn:hover { gap: 0.7rem; }
+    .proj-link-btn::after { content: '→'; }
+    .proj-link-btn.secondary { color: var(--text2); font-size: 0.68rem; }
+    .proj-link-btn.secondary::after { content: '↗'; }
+
+    /* ── COMING SOON SECTION ─────────────────────────────────── */
+    .coming-soon-box {
+      border: 1px dashed var(--border2);
+      background: rgba(77,217,255,0.02);
+      padding: 4rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    .coming-soon-box h3 {
+      font-family: var(--font-display);
+      font-size: 2.5rem; letter-spacing: 0.05em;
+      color: var(--text); margin-bottom: 0.8rem; line-height: 1;
+    }
+    .coming-soon-box p {
+      font-size: 0.9rem; font-weight: 300;
+      color: var(--text2); max-width: 460px;
+      margin: 0 auto 2rem; line-height: 1.9;
+    }
+
+    @media (max-width: 600px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-ring"></div>
+
+  <nav class="navbar">
+    <a class="nav-logo" href="../index.html"><span>//</span> SIAM</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="journey.html">Journey</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-status"><div class="status-dot"></div> Open to Work</div>
+    <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="nav-mobile">
+    <a href="../index.html">Home</a><a href="about.html">About</a>
+    <a href="skills.html">Skills</a><a href="projects.html">Projects</a>
+    <a href="journey.html">Journey</a><a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="page-hero">
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-glow"></div>
+    <div class="page-hero-content">
+      <div class="page-hero-eyebrow">What I've Built</div>
+      <h1 class="page-hero-title">MY<br><em>PROJECTS.</em></h1>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">All Work</span>
+        <h2 class="section-title">Projects</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <!-- Filter buttons -->
+      <div class="filter-row reveal">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="automation">Automation</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="odin">Odin Project</button>
+      </div>
+
+      <div class="projects-grid">
+        <!-- Project 1 -->
+        <div class="proj-card reveal" data-category="automation">
+          <span class="proj-badge live">Live</span>
+          <div class="proj-card-num">PROJECT — 001</div>
+          <h3 class="proj-card-title">Telegram Media Bot</h3>
+          <p class="proj-card-desc">
+            A Telegram bot that combines <strong>gallery-dl</strong> (a powerful
+            command-line media downloader) with the <strong>Telegram Bot API</strong>.
+            Users send any supported media link directly to the bot; it downloads
+            the content and sends it back in the chat. Supports dozens of websites
+            including major social platforms.
+          </p>
+          <div class="proj-card-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Telegram Bot API</span>
+            <span class="tag">gallery-dl</span>
+            <span class="tag">Automation</span>
+            <span class="tag">CLI Tools</span>
+          </div>
+          <div class="proj-card-links">
+            <a href="https://github.com/siamuddin" target="_blank" rel="noopener" class="proj-link-btn">GitHub</a>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="proj-card reveal reveal-delay-1" data-category="odin web">
+          <span class="proj-badge wip">In Progress</span>
+          <div class="proj-card-num">PROJECT — 002</div>
+          <h3 class="proj-card-title">Odin Foundations</h3>
+          <p class="proj-card-desc">
+            A collection of projects built as part of The Odin Project foundations
+            curriculum. Includes a <strong>landing page</strong>, a
+            <strong>Rock Paper Scissors</strong> game with DOM manipulation,
+            an <strong>Etch-a-Sketch</strong> grid drawing tool, and a
+            <strong>Calculator</strong>. Each one pushed my HTML/CSS/JS skills forward.
+          </p>
+          <div class="proj-card-tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">DOM API</span>
+            <span class="tag">The Odin Project</span>
+          </div>
+          <div class="proj-card-links">
+            <a href="https://github.com/siamuddin" target="_blank" rel="noopener" class="proj-link-btn">GitHub</a>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="proj-card reveal reveal-delay-2" data-category="web">
+          <span class="proj-badge live">Live</span>
+          <div class="proj-card-num">PROJECT — 003</div>
+          <h3 class="proj-card-title">This Portfolio</h3>
+          <p class="proj-card-desc">
+            You're looking at it. A <strong>7-page dark futuristic portfolio</strong>
+            built entirely from scratch with vanilla HTML, CSS and JavaScript.
+            No frameworks, no templates — just code. Features a custom cursor,
+            scroll animations, a mobile menu, and a shared component system.
+          </p>
+          <div class="proj-card-tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">CSS Animations</span>
+            <span class="tag">Responsive</span>
+          </div>
+          <div class="proj-card-links">
+            <a href="https://gitlab.com/siamuddin" target="_blank" rel="noopener" class="proj-link-btn">GitLab</a>
+            <a href="https://siamuddin.gitlab.io" target="_blank" rel="noopener" class="proj-link-btn secondary">Live Site</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coming soon -->
+      <div class="coming-soon-box reveal">
+        <h3>More Coming Soon 👀</h3>
+        <p>
+          I'm actively working through The Odin Project and building new projects.
+          Full-stack work is incoming — Node.js, databases, React.
+          Follow my GitHub to see it happen in real time.
+        </p>
+        <a href="https://github.com/siamuddin" target="_blank" rel="noopener" class="btn btn-outline">Follow on GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-left">© <span id="footer-year"></span> <span>Siamuddin</span> · Built with HTML, CSS & stubbornness.</div>
+    <div class="footer-right">
+      <a href="https://github.com/siamuddin" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://gitlab.com/siamuddin" target="_blank" rel="noopener">GitLab</a>
+      <a href="mailto:shelve-clock-corny@duck.com">Email</a>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    /*
+      Filter tabs:
+      Each project card has a data-category attribute (e.g. "automation", "web").
+      When a filter button is clicked, we show only cards matching that category.
+      "all" shows everything.
+    */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projCards  = document.querySelectorAll('.proj-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active button
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+
+        projCards.forEach(card => {
+          const cats = card.dataset.category || '';
+          // Show card if filter is 'all' OR if its categories include the filter word
+          if (filter === 'all' || cats.includes(filter)) {
+            card.style.display = '';       // show
+            card.style.opacity = '1';
+          } else {
+            card.style.display = 'none';   // hide
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

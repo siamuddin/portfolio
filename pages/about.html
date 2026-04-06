@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<!--
+  pages/about.html — ABOUT PAGE
+  ──────────────────────────────
+  A full page dedicated to who Siamuddin is.
+  Sections:
+    • Page hero banner
+    • Bio (text + code window)
+    • Values / approach cards
+    • Fun facts
+    • CTA
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Siamuddin</title>
+  <meta name="description" content="Learn about Siamuddin — a self-taught full-stack developer from Bangladesh learning through The Odin Project.">
+
+  <!-- Path goes UP one level (../) because this file is inside /pages/ -->
+  <link rel="stylesheet" href="../css/style.css">
+
+  <style>
+    /* ── BIO GRID ────────────────────────────────────────────── */
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .bio-text p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 2;
+      color: var(--text2);
+      margin-bottom: 1.4rem;
+    }
+    .bio-text p strong { color: var(--text); font-weight: 600; }
+    .bio-text p .hl    { color: var(--cyan); }
+
+    /* ── STATS ROW ───────────────────────────────────────────── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin: 3rem 0;
+    }
+    .stat-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .stat-box::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(to right, var(--cyan), var(--accent));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .stat-box:hover { border-color: var(--border2); }
+    .stat-box:hover::after { transform: scaleX(1); }
+    .stat-box-num {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      line-height: 1;
+      color: var(--cyan);
+    }
+    .stat-box-label {
+      font-size: 0.63rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-top: 0.35rem;
+    }
+
+    /* ── VALUES CARDS ────────────────────────────────────────── */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .value-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .value-card:hover { border-color: var(--border2); transform: translateY(-4px); }
+    .value-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+    .value-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 0.05em;
+      color: var(--text);
+      margin-bottom: 0.8rem;
+      line-height: 1;
+    }
+    .value-desc {
+      font-size: 0.84rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--text2);
+    }
+
+    /* ── FUN FACTS ───────────────────────────────────────────── */
+    .facts-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .fact-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--cyan);
+      padding: 1.2rem 1.5rem;
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--text2);
+      line-height: 1.7;
+    }
+    .fact-item strong { color: var(--text); font-weight: 600; }
+
+    @media (max-width: 900px) {
+      .bio-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .values-grid { grid-template-columns: 1fr; }
+      .facts-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a class="nav-logo" href="../index.html"><span>//</span> SIAM</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="journey.html">Journey</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-status"><div class="status-dot"></div> Open to Work</div>
+    <button class="nav-hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="nav-mobile">
+    <a href="../index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="skills.html">Skills</a>
+    <a href="projects.html">Projects</a>
+    <a href="journey.html">Journey</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-glow"></div>
+    <div class="page-hero-content">
+      <div class="page-hero-eyebrow">Who I Am</div>
+      <h1 class="page-hero-title">ABOUT<br><em>ME.</em></h1>
+    </div>
+  </div>
+
+  <!-- BIO SECTION -->
+  <section class="section">
+    <div class="container">
+      <div class="bio-grid">
+        <div class="bio-text reveal">
+          <p>Hey — I'm <strong>Siamuddin</strong>, a self-taught developer from <span class="hl">Bangladesh 🇧🇩</span>. I'm learning full-stack web development through <strong>The Odin Project</strong> — one of the most rigorous free coding curricula on the internet.</p>
+          <p>My journey started with curiosity and a browser — I wanted to understand how websites actually <em>work</em> under the hood. So I started learning. I haven't stopped since.</p>
+          <p>Right now I'm focused on <span class="hl">JavaScript fundamentals</span>, HTML/CSS mastery, and building real things that solve real problems. My first project was a <strong>Telegram media bot</strong> — a Python automation tool that combines two APIs to let users download media directly into Telegram. Small, but mine.</p>
+          <p>My goal is to become a <strong>full-stack developer</strong> who can take an idea from a napkin sketch to a live, deployed product. I love clean code, interesting problems, and websites that feel genuinely good to use.</p>
+          <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="projects.html" class="btn btn-primary">See My Work</a>
+            <a href="contact.html"  class="btn btn-outline">Say Hello</a>
+          </div>
+        </div>
+
+        <!-- Code window - about me as JSON -->
+        <div class="code-window reveal reveal-delay-1">
+          <div class="code-titlebar">
+            <div class="code-dot r"></div>
+            <div class="code-dot y"></div>
+            <div class="code-dot g"></div>
+            <span class="code-filename">about_me.json</span>
+          </div>
+          <div class="code-body">
+            <div><span class="ln">01</span><span class="cv">{</span></div>
+            <div><span class="ln">02</span>  <span class="cf">"name"</span>: <span class="cs">"Siamuddin"</span>,</div>
+            <div><span class="ln">03</span>  <span class="cf">"role"</span>: <span class="cs">"Full-Stack (in progress)"</span>,</div>
+            <div><span class="ln">04</span>  <span class="cf">"location"</span>: <span class="cs">"Bangladesh 🇧🇩"</span>,</div>
+            <div><span class="ln">05</span>  <span class="cf">"learning"</span>: <span class="cs">"The Odin Project"</span>,</div>
+            <div><span class="ln">06</span>  <span class="cf">"goal"</span>: <span class="cs">"Build cool websites"</span>,</div>
+            <div><span class="ln">07</span>  <span class="cf">"languages"</span>: [</div>
+            <div><span class="ln">08</span>    <span class="cs">"HTML"</span>, <span class="cs">"CSS"</span>,</div>
+            <div><span class="ln">09</span>    <span class="cs">"JavaScript"</span>, <span class="cs">"Python"</span></div>
+            <div><span class="ln">10</span>  ],</div>
+            <div><span class="ln">11</span>  <span class="cf">"available"</span>: <span class="cn">true</span>,</div>
+            <div><span class="ln">12</span>  <span class="cf">"coffee"</span>: <span class="cs">"always"</span>,</div>
+            <div><span class="ln">13</span>  <span class="cc">// still loading... 🚀</span></div>
+            <div><span class="ln">14</span><span class="cv">}</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-box reveal reveal-delay-1">
+          <div class="stat-box-num">TOP</div>
+          <div class="stat-box-label">Odin Project</div>
+        </div>
+        <div class="stat-box reveal reveal-delay-2">
+          <div class="stat-box-num">1+</div>
+          <div class="stat-box-label">Live Projects</div>
+        </div>
+        <div class="stat-box reveal reveal-delay-3">
+          <div class="stat-box-num">∞</div>
+          <div class="stat-box-label">Things to Learn</div>
+        </div>
+        <div class="stat-box reveal reveal-delay-4">
+          <div class="stat-box-num">0</div>
+          <div class="stat-box-label">Plans to Stop</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">02.</span>
+        <h2 class="section-title">How I Work</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal">
+          <div class="value-icon">🔨</div>
+          <div class="value-title">Build First</div>
+          <p class="value-desc">I learn by doing. Reading docs is fine, but the real understanding comes when I open a blank file and start from nothing. Every bug is a lesson.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-1">
+          <div class="value-icon">🔍</div>
+          <div class="value-title">Understand Deep</div>
+          <p class="value-desc">I don't like copy-pasting code I don't understand. I dig into how things work — even when it's slow — because the foundation matters more than the speed.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-2">
+          <div class="value-icon">🚀</div>
+          <div class="value-title">Ship It</div>
+          <p class="value-desc">Perfect is the enemy of done. I push commits, put things online, and improve in public. A working version today beats a perfect version never.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUN FACTS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-num">03.</span>
+        <h2 class="section-title">Fun Facts</h2>
+        <div class="section-rule"></div>
+      </div>
+      <div class="facts-list">
+        <div class="fact-item reveal">🌍 Based in <strong>Bangladesh</strong> — building for the whole internet.</div>
+        <div class="fact-item reveal reveal-delay-1">🤖 My first project was a <strong>Telegram bot</strong> — because automating things is fun.</div>
+        <div class="fact-item reveal reveal-delay-2">📚 Learning via <strong>The Odin Project</strong> — the free curriculum that doesn't cut corners.</div>
+        <div class="fact-item reveal reveal-delay-3">💻 I write code in <strong>VS Code</strong> with a dark theme. Obviously.</div>
+        <div class="fact-item reveal">🎯 Current goal: <strong>Full-Stack developer</strong>. The stack will be full. Eventually.</div>
+        <div class="fact-item reveal reveal-delay-1">☕ Productivity is directly proportional to <strong>caffeine intake</strong>.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-banner reveal" style="padding: 5rem var(--sp-lg); text-align:center; border-top:1px solid var(--border);">
+    <h2 style="font-family:var(--font-display);font-size:clamp(2rem,5vw,4rem);letter-spacing:0.04em;margin-bottom:1rem;">Want to <span style="color:var(--cyan);">Connect?</span></h2>
+    <p style="font-size:0.95rem;color:var(--text2);max-width:420px;margin:0 auto 2rem;font-weight:300;">I'm always open to interesting conversations, collaborations, or just saying hi.</p>
+    <a href="contact.html" class="btn btn-primary">Say Hello</a>
+  </div>
+
+  <footer>
+    <div class="footer-left">© <span id="footer-year"></span> <span>Siamuddin</span> · Built with HTML, CSS & stubbornness.</div>
+    <div class="footer-right">
+      <a href="https://github.com/siamuddin" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://gitlab.com/siamuddin" target="_blank" rel="noopener">GitLab</a>
+      <a href="mailto:shelve-clock-corny@duck.com">Email</a>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

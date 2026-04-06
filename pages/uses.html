@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<!--
+  pages/uses.html — USES PAGE
+  ─────────────────────────────
+  A "uses" page is a popular developer tradition — listing the tools,
+  hardware and software you use day-to-day.
+  Inspired by uses.tech (a directory of developer uses pages).
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uses — Siamuddin</title>
+  <meta name="description" content="The tools, software and setup Siamuddin uses to code and build things.">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* ── USES LIST ───────────────────────────────────────────── */
+    .uses-section {
+      margin-bottom: 4rem;
+    }
+    .uses-section-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem; letter-spacing: 0.06em;
+      color: var(--cyan); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.8rem;
+      line-height: 1;
+    }
+    .uses-section-title::after {
+      content: '';
+      flex: 1; height: 1px;
+      background: var(--border2);
+    }
+
+    .uses-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .uses-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--border2);
+      padding: 1.3rem 1.6rem;
+      display: flex; align-items: flex-start; gap: 1.2rem;
+      transition: border-color 0.25s, border-left-color 0.25s;
+    }
+    .uses-item:hover { border-color: var(--border2); border-left-color: var(--cyan); }
+    .uses-item-icon { font-size: 1.3rem; width: 24px; flex-shrink: 0; margin-top: 0.1rem; }
+    .uses-item-body {}
+    .uses-item-name {
+      font-size: 0.9rem; font-weight: 600;
+      color: var(--text); margin-bottom: 0.25rem;
+    }
+    .uses-item-desc {
+      font-size: 0.82rem; font-weight: 300;
+      color: var(--text2); line-height: 1.7;
+    }
+    .uses-item-desc a { color: var(--cyan); }
+    .uses-item-badge {
+      margin-left: auto; flex-shrink: 0;
+      padding: 0.2rem 0.6rem;
+      font-size: 0.58rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .uses-item-badge.free   { background: rgba(0,255,179,0.08); border: 1px solid rgba(0,255,179,0.25); color: var(--accent); }
+    .uses-item-badge.paid   { background: rgba(77,217,255,0.06); border: 1px solid var(--border2); color: var(--cyan); }
+    .uses-item-badge.learn  { background: rgba(180,150,255,0.08); border: 1px solid rgba(180,150,255,0.2); color: #b49fff; }
+
+    /* ── PHILOSOPHY BOX ──────────────────────────────────────── */
+    .philosophy {
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-left: 4px solid var(--cyan);
+      padding: 2rem 2.5rem;
+      margin-top: 3rem;
+    }
+    .philosophy p {
+      font-size: 0.92rem; font-weight: 300;
+      line-height: 1.9; color: var(--text2);
+    }
+    .philosophy p strong { color: var(--text); font-weight: 600; }
+    .philosophy p .hl { color: var(--cyan); }
+  </style>
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-ring"></div>
+
+  <nav class="navbar">
+    <a class="nav-logo" href="../index.html"><span>//</span> SIAM</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="journey.html">Journey</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-status"><div class="status-dot"></div> Open to Work</div>
+    <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="nav-mobile">
+    <a href="../index.html">Home</a><a href="about.html">About</a>
+    <a href="skills.html">Skills</a><a href="projects.html">Projects</a>
+    <a href="journey.html">Journey</a><a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="page-hero">
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-glow"></div>
+    <div class="page-hero-content">
+      <div class="page-hero-eyebrow">My Setup</div>
+      <h1 class="page-hero-title">WHAT<br><em>I USE.</em></h1>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container" style="max-width: 780px;">
+      <p class="reveal" style="font-size:0.92rem;font-weight:300;color:var(--text2);line-height:1.9;margin-bottom:3rem;">
+        Everything I use to write code, learn, and build things.
+        Mostly free tools because I'm a student — but free doesn't mean bad.
+        Some of the best developer tools in the world are completely free.
+      </p>
+
+      <!-- Editor & Terminal -->
+      <div class="uses-section reveal">
+        <div class="uses-section-title">⌨️ Editor & Terminal</div>
+        <div class="uses-list">
+          <div class="uses-item">
+            <div class="uses-item-icon">🟦</div>
+            <div class="uses-item-body">
+              <div class="uses-item-name">Visual Studio Code</div>
+              <div class="uses-item-desc">My main code editor. Fast, extensible, and has excellent support for every language I use. Extensions: Prettier, ESLint, GitLens, Live Server.</div>
+            </div>
+            <span class="uses-item-badge free">Free</span>
+          </div>
+          <div class="uses-item">
+            <div class="uses-item-icon">🖥️</div>
+            <div class="uses-item-body">
+              <div class="uses-item-name">Terminal / Bash</div>
+              <div class="uses-item-desc">Command line for Git, running scripts, navigating files, and running Python bots. Once you learn the CLI, going back feels wrong.</div>
+            </div>
+            <span class="uses-item-badge free">Free</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coding & Dev -->
+      <div class="uses-section reveal">
+        <div class="uses-section-title">🛠️ Development</div>
+        <div class="uses-list">
+          <div class="uses-item">
+            <div class="uses-item-icon">🐙</div>
+            <div class="uses-item-body">
+              <div class="uses-item-name">Git + GitHub + GitLab</div>
+              <div class="uses-item-desc">Version control for everything. GitHub for open source, GitLab for hosting this portfolio via GitLab Pages (free static hosting).</div>
+            </div>
+            <span class="uses-item-badge free">Free</span>
+          </div>
+          <div class="uses-item">
+            <div class="uses-item-icon">🔥</div>
+            <div class="uses-item-body">
+              <div class="uses-item-name">Firefox Developer Edition</div>
+              <div class="uses-item-desc">My browser of choice for development. The CSS grid inspector and layout tools are genuinely better than Chrome's.</div>
+            </div>
+            <span class="uses-item-badge free">Free</span>
+          </div>
+          <div class="uses-item">
+            <div class="uses-item-icon">🐍</div>
+            <div class="uses-item-body">
+              <div class="uses-item-name">Python 3</div>
+              <div class="uses-item-desc">For automation scripts, bots, and anything backend. Used to build my Telegram bot project.</div>
+            </div>
+            <span class="uses-item-badge free">Free</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Learning -->
+      <div class="uses-section reveal">
+        <div class="uses-section-title">📚 Learning</div>
+        <div class="uses-list">
+          <div class="uses-item">
+            <div class="uses-item-icon">⚔️</div>
+            <div class="uses-item-body">
+              <div class="uses-item-name">The Odin Project</div>
+              <div class="uses-item-desc">My primary curriculum for learning full-stack web development. Free, open-source, project-based. The best free coding education on the internet — no shortcuts.</div>
+            </div>
+            <span class="uses-item-badge free">Free</span>
+          </div>
+          <div class="uses-item">
+            <div class="uses-item-icon">📖</div>
+            <div class="uses-item-body">
+              <div class="uses-item-name">MDN Web Docs</div>
+              <div class="uses-item-desc">Mozilla's documentation for HTML, CSS and JavaScript. The authoritative reference — I check it almost every day.</div>
+            </div>
+            <span class="uses-item-badge free">Free</span>
+          </div>
+          <div class="uses-item">
+            <div class="uses-item-icon">💬</div>
+            <div class="uses-item-body">
+              <div class="uses-item-name">Stack Overflow + Discord</div>
+              <div class="uses-item-desc">Stack Overflow for searching past answers. The Odin Project Discord for community support and motivation.</div>
+            </div>
+            <span class="uses-item-badge free">Free</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Design -->
+      <div class="uses-section reveal">
+        <div class="uses-section-title">🎨 Design</div>
+        <div class="uses-list">
+          <div class="uses-item">
+            <div class="uses-item-icon">🖼️</div>
+            <div class="uses-item-body">
+              <div class="uses-item-name">Figma (learning)</div>
+              <div class="uses-item-desc">Just starting to learn Figma for UI design and wireframing. Free tier is more than enough for personal projects.</div>
+            </div>
+            <span class="uses-item-badge learn">Learning</span>
+          </div>
+          <div class="uses-item">
+            <div class="uses-item-icon">🔤</div>
+            <div class="uses-item-body">
+              <div class="uses-item-name">Google Fonts</div>
+              <div class="uses-item-desc">Free web fonts. This portfolio uses Bebas Neue (display), Outfit (body), and JetBrains Mono (code). All free.</div>
+            </div>
+            <span class="uses-item-badge free">Free</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hosting -->
+      <div class="uses-section reveal">
+        <div class="uses-section-title">☁️ Hosting & Deployment</div>
+        <div class="uses-list">
+          <div class="uses-item">
+            <div class="uses-item-icon">🦊</div>
+            <div class="uses-item-body">
+              <div class="uses-item-name">GitLab Pages</div>
+              <div class="uses-item-desc">Free static site hosting built into GitLab. This entire portfolio is hosted here for free. Zero configuration for HTML/CSS/JS projects.</div>
+            </div>
+            <span class="uses-item-badge free">Free</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Philosophy -->
+      <div class="philosophy reveal">
+        <p>
+          I deliberately use <strong>free tools</strong> wherever possible —
+          not because I can't afford paid ones, but because the best
+          developer tools in the world are free and open source.
+          <span class="hl">Learning on free tools teaches you more.</span>
+          When you can't rely on magic buttons, you understand what's
+          actually happening under the hood.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-left">© <span id="footer-year"></span> <span>Siamuddin</span> · Built with HTML, CSS & stubbornness.</div>
+    <div class="footer-right">
+      <a href="https://github.com/siamuddin" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://gitlab.com/siamuddin" target="_blank" rel="noopener">GitLab</a>
+      <a href="mailto:shelve-clock-corny@duck.com">Email</a>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
