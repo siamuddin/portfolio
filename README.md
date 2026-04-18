@@ -2,7 +2,7 @@
 
 A dark, futuristic, fully hand-coded portfolio website — built from scratch with **vanilla HTML, CSS and JavaScript**. No frameworks, no libraries, no templates. Just pure front-end code.
 
-**Live site:** https://siamuddin.gitlab.io
+**Live site:** https://siamuddin.github.io/portfolio/
 
 ---
 
@@ -228,7 +228,7 @@ pages:
 
 **Step 3** — Push your code. Wait ~2 minutes.
 
-**Step 4** — Visit `https://siamuddin.gitlab.io` 🎉
+**Step 4** — Visit `https://siamuddin.github.io/portfolio/` 🎉
 
 ---
 
@@ -284,7 +284,7 @@ pages:
 **Siamuddin**
 Learning Full-Stack Development through [The Odin Project](https://www.theodinproject.com/)
 
-- 🌐 Portfolio: https://siamuddin.gitlab.io
+- 🌐 Portfolio: https://siamuddin.github.io/portfolio/
 - 📧 Email: shelve-clock-corny@duck.com
 - 🐙 GitHub: https://github.com/siamuddin
 - 🦊 GitLab: https://gitlab.com/siamuddin
